@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <span id="send">發送</span>
+    <script>
+        const host = 'ws://localhost:3000/ws'
+        const send = document.getElementById('send')
+        const ws = new WebSocket(host)
+        ws.onopen = (res) => {
+            console.log(res);
+        }
+
+        ws.onmessage = (res) => {
+            console.log(JSON.parse(res.data));
+        }
+
+        send.addEventListener('click', () => {
+            console.log(123);
+            ws.send(JSON.stringify({
+                content: '嗨嗨'
+            }))
+        })
+    </script>
+</body>
+
+</html>
